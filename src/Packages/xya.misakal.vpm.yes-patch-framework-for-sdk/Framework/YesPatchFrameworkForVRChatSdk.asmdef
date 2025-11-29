@@ -1,0 +1,20 @@
+{
+    "name": "YesPatchFrameworkForVRChatSdk",
+    "rootNamespace": "YesPatchFrameworkForVRChatSdk",
+    "references": [
+        "GUID:c427fdff1390e954e91e12eb67f5cf3e"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "YPF4VRC.0Harmony.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

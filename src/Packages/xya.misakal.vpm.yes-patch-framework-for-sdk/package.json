@@ -1,0 +1,22 @@
+{
+  "name": "xyz.misakal.vpm.yes-patch-framework-for-sdk",
+  "displayName": "Yes! Patch Framework for VRChat SDK",
+  "version": "0.1.0",
+  "hideInEditor": true,
+  "description": "Make patch VRChat SDK easier.",
+  "unity": "2022.3",
+  "author": {
+    "name": "project-vrcz"
+  },
+  "changelogUrl": "https://github.com/project-vrcz/yet-another-sdk-patch/releases",
+  "documentationUrl": "https://github.com/project-vrcz/yet-another-sdk-patch",
+  "license": "LGPL-3.0-only",
+  "licensesUrl": "https://github.com/project-vrcz/yet-another-sdk-patch/blob/main/LICENSE",
+  "keywords": [
+    "vrchat",
+    "patch",
+    "patcher"
+  ],
+  "vpmDependencies": {
+  }
+}

@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Text;
 using UnityEditor;
 using UnityEngine;
 using YesPatchFrameworkForVRChatSdk.PatchApi;
@@ -36,14 +38,40 @@ namespace YesPatchFrameworkForVRChatSdk
             if (duplicateIds.Length > 0)
             {
                 var duplicateIdsString = string.Join(", ", duplicateIds);
-                throw new Exception($"YesPatchFrameworkForVRChatSdk: Duplicate patch ids found: {duplicateIdsString}");
+                throw new Exception($"YesPatchFramework: Duplicate patch ids found: {duplicateIdsString}");
             }
 
+            var patchesFailedToApply = new List<YesPatchBase>();
             foreach (var patch in patches)
             {
-                Debug.Log(patch.Id);
-                patch.Patch();
+                Debug.Log($"[YesPatchFramework] Applying patch: [{patch.Id}] {patch.DisplayName}");
+                try
+                {
+                    patch.Patch();
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogError(
+                        $"[YesPatchFramework] Failed to apply patch: [{patch.Id}] {patch.DisplayName}");
+                    Debug.LogException(ex);
+
+                    patchesFailedToApply.Add(patch);
+                }
             }
+
+            var completedMessageBuilder = new StringBuilder();
+            completedMessageBuilder.AppendLine(
+                $"[YesPatchFramework] Patch process completed. Total: {patches.Length} Errors: {patchesFailedToApply.Count}");
+            if (patchesFailedToApply.Count > 0)
+            {
+                completedMessageBuilder.AppendLine("The following patches failed to apply:");
+                foreach (var failedPatch in patchesFailedToApply)
+                {
+                    completedMessageBuilder.AppendLine($"- [{failedPatch.Id}] {failedPatch.DisplayName}");
+                }
+            }
+
+            Debug.Log(completedMessageBuilder.ToString());
         }
     }
 }

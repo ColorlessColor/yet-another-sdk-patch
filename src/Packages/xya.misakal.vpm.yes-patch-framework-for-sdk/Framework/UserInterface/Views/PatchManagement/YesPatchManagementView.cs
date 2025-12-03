@@ -53,8 +53,8 @@ internal sealed class YesPatchManagementView : VisualElement
     {
         _welcomePageContainer.style.display = new StyleEnum<DisplayStyle>(StyleKeyword.None);
 
-        if (_patchSettingsUi is not null)
-            Remove(_patchSettingsUi);
+        if (_patchSettingsUi is not null && _contentContainer.Contains(_patchSettingsUi))
+            _contentContainer.Remove(_patchSettingsUi);
 
         _patchSettingsUi = new YesPatchSettingsUi(patch);
         _patchSettingsUi.style.height = new StyleLength(Length.Percent(100));

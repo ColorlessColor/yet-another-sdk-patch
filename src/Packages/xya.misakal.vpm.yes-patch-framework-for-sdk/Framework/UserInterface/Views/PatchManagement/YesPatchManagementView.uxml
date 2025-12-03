@@ -5,7 +5,7 @@
     xmlns:engine="UnityEngine.UIElements"
     xmlns:editor="UnityEditor.UIElements">
 
-    <Style src="YesPatchManagementWindow.uss" />
+    <Style src="YesPatchManagementView.uss" />
 
     <engine:VisualElement class="patch-management-window-container">
         <engine:VisualElement class="patch-management-window-left-panel">

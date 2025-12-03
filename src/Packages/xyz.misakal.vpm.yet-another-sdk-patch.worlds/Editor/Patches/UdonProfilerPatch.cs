@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using HarmonyLib;
 using JetBrains.Annotations;
 using Unity.Profiling;
+using UnityEngine;
+using UnityEngine.UIElements;
 using VRC.Udon;
 using VRC.Udon.Common.Interfaces;
 using YesPatchFrameworkForVRChatSdk.PatchApi;
@@ -16,8 +18,9 @@ internal sealed class UdonProfilerPatch : YesPatchBase
     public override string DisplayName => "Udon Profiler";
 
     public override string Description =>
-        "Add more detail markers to Unity Profiler for Udon behaviours execution. "
-        + "Warning: If your UdonBehaviour is not running on the main thread, it may cause an error!";
+        "Add more detail markers to Unity Profiler for Udon behaviours execution.";
+
+    public override bool HasSettingsUi => true;
 
     private readonly Harmony _harmony = new("xyz.misakal.vpm.yet-another-sdk-patch.worlds.udon-profiler");
 
@@ -29,6 +32,19 @@ internal sealed class UdonProfilerPatch : YesPatchBase
     public override void UnPatch()
     {
         _harmony.UnpatchSelf();
+    }
+
+    public override void CreateSettingsUi(VisualElement rootVisualElement)
+    {
+        rootVisualElement.Add(new HelpBox(
+            "If your UdonBehaviour is not running on the main thread, it may cause an error!",
+            HelpBoxMessageType.Warning)
+        {
+            style =
+            {
+                unityFontStyleAndWeight = new StyleEnum<FontStyle>(FontStyle.Bold)
+            }
+        });
     }
 
     [HarmonyPatch(typeof(UdonBehaviour), nameof(UdonBehaviour.RunProgram), typeof(uint))]

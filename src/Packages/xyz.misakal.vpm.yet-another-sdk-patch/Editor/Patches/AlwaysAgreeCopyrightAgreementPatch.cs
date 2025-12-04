@@ -15,6 +15,15 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
     public override string DisplayName => "Always Agree Copyright Agreement";
     public override string Description => "Automatically agrees to the copyright agreement when uploading content.";
 
+#if !YAP4VRC_VRCHAT_BASE_3_8_0_OR_NEWER
+    public override void Patch()
+    {
+    }
+
+    public override void UnPatch()
+    {
+    }
+#else
     private readonly Harmony _harmony = new("xyz.misakal.vpm.yet-another-sdk-patch.always-agree-copyright-agreement");
 
     private const string HasAgreementMethodName = "HasAgreement";
@@ -48,7 +57,8 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
     {
         if (_agreeMethod is null)
         {
-            Debug.LogWarning($"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Agree method is null, cannot auto-agree copyright agreement. Executing original method.");
+            Debug.LogWarning(
+                $"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Agree method is null, cannot auto-agree copyright agreement. Executing original method.");
             return true;
         }
 
@@ -60,7 +70,8 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
         {
             if (_agreeMethod is null)
             {
-                Debug.LogWarning($"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Agree method is null, cannot auto-agree copyright agreement.");
+                Debug.LogWarning(
+                    $"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Agree method is null, cannot auto-agree copyright agreement.");
                 return false;
             }
 
@@ -84,7 +95,8 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
             catch (Exception ex)
             {
                 Debug.LogException(ex);
-                Debug.LogError($"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Failed to auto-agree copyright agreement.");
+                Debug.LogError(
+                    $"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Failed to auto-agree copyright agreement.");
             }
 
             return false;
@@ -106,7 +118,8 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
         }
         catch (Exception ex)
         {
-            Debug.LogError($"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Failed to check is copyright agreement agreed");
+            Debug.LogError(
+                $"[{nameof(AlwaysAgreeCopyrightAgreementPatch)}] Failed to check is copyright agreement agreed");
             Debug.LogException(ex);
         }
 
@@ -119,4 +132,5 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
         AlreadyAgreed,
         Error
     }
+#endif
 }

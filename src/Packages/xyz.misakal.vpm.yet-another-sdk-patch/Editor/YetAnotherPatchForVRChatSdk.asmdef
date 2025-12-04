@@ -18,6 +18,17 @@
     ],
     "autoReferenced": false,
     "defineConstraints": [],
-    "versionDefines": [],
+    "versionDefines": [
+        {
+            "name": "com.vrchat.base",
+            "expression": "3.8.0",
+            "define": "YAP4VRC_VRCHAT_BASE_3_8_0_OR_NEWER"
+        },
+        {
+            "name": "com.vrchat.base",
+            "expression": "3.8.1",
+            "define": "YAP4VRC_VRCHAT_BASE_3_8_1_OR_NEWER"
+        }
+    ],
     "noEngineReferences": false
 }

@@ -16,6 +16,8 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
     public override string DisplayName => "Always Agree Copyright Agreement";
     public override string Description => "Automatically agrees to the copyright agreement when uploading content.";
 
+    public override string Category => "Base SDK Quality of Life Improvements";
+
     public override bool HasSettingsUi => true;
 
     public override void CreateSettingsUi(VisualElement rootVisualElement)

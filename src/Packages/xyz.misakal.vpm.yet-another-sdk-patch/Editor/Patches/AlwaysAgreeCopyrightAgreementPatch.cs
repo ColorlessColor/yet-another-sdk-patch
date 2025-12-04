@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using HarmonyLib;
 using UnityEngine;
+using UnityEngine.UIElements;
 using VRC.SDKBase;
 using VRC.SDKBase.Editor.Api;
 using YesPatchFrameworkForVRChatSdk.PatchApi;
@@ -14,6 +15,31 @@ internal sealed class AlwaysAgreeCopyrightAgreementPatch : YesPatchBase
     public override string Id => "xyz.misakal.vpm.yet-another-sdk-patch.always-agree-copyright-agreement";
     public override string DisplayName => "Always Agree Copyright Agreement";
     public override string Description => "Automatically agrees to the copyright agreement when uploading content.";
+
+    public override bool HasSettingsUi => true;
+
+    public override void CreateSettingsUi(VisualElement rootVisualElement)
+    {
+        var copyrightAgreementTip = new HelpBox(GetCopyrightAgreementText(), HelpBoxMessageType.Warning)
+        {
+            style =
+            {
+                unityFontStyleAndWeight = new StyleEnum<FontStyle>(FontStyle.Bold)
+            }
+        };
+
+        rootVisualElement.Add(copyrightAgreementTip);
+    }
+
+    private static string GetCopyrightAgreementText()
+    {
+#if YAP4VRC_VRCHAT_BASE_3_8_1_OR_NEWER
+        return VRCCopyrightAgreement.AgreementText;
+#elif YAP4VRC_VRCHAT_BASE_3_8_0_OR_NEWER
+        return
+            "By clicking OK, I certify that I have the necessary rights to upload this content and that it will not infringe on any third-party legal or intellectual property rights.";
+#endif
+    }
 
 #if !YAP4VRC_VRCHAT_BASE_3_8_0_OR_NEWER
     public override void Patch()

@@ -1,0 +1,9 @@
+﻿.patch-category-header-container {
+    padding: 2px 8px;
+}
+
+#patch-category-header-text {
+    -unity-font-style: bold;
+    border-bottom-width: 1px;
+    border-bottom-color: gray;
+}

@@ -29,23 +29,45 @@ internal sealed class YesPatchManagementView : VisualElement
 
         var patchesListView = this.Q<ListView>("patches-list-view");
 
-        var patches = _yesPatchManager.Patches.ToList();
+        var patchesNavigationRecords = _yesPatchManager.Patches
+            .Select(p => new YesPatchNavigationRecord(p))
+            .GroupBy(p => p.Patch.Category)
+            .SelectMany(g => new YesPatchNavigationRecordBase[]
+            {
+                new YesPatchNavigationCategoryRecord(g.Key),
+            }.Concat(g))
+            .ToArray();
+
         patchesListView.makeItem = () => new VisualElement();
         patchesListView.bindItem = (view, index) =>
         {
-            var item = new YesPatchListItem(patches[index], _patchManagerStateManager);
+            if (patchesNavigationRecords[index] is YesPatchNavigationCategoryRecord categoryRecord)
+            {
+                view.Add(new YesPatchListCategoryItem(categoryRecord.Text));
+                return;
+            }
+
+            if (patchesNavigationRecords[index] is not YesPatchNavigationRecord record)
+                return;
+
+            var item = new YesPatchListItem(record.Patch, _patchManagerStateManager);
             view.Add(item);
         };
 
-        patchesListView.fixedItemHeight = 67;
-        patchesListView.itemsSource = patches;
+        patchesListView.virtualizationMethod = CollectionVirtualizationMethod.DynamicHeight;
+        patchesListView.itemsSource = patchesNavigationRecords;
 
+        patchesListView.selectionType = SelectionType.Single;
         patchesListView.selectionChanged += objects =>
         {
-            if (objects.FirstOrDefault(obj => obj is YesPatch) is not YesPatch selectedPatch)
+            if (objects.FirstOrDefault(obj => obj is YesPatchNavigationRecord)
+                is not YesPatchNavigationRecord selectedPatch)
+            {
+                patchesListView.ClearSelection();
                 return;
+            }
 
-            CreateSettingsUi(selectedPatch);
+            CreateSettingsUi(selectedPatch.Patch);
         };
     }
 
@@ -60,5 +82,29 @@ internal sealed class YesPatchManagementView : VisualElement
         _patchSettingsUi.style.height = new StyleLength(Length.Percent(100));
 
         _contentContainer.Add(_patchSettingsUi);
+    }
+
+    private abstract class YesPatchNavigationRecordBase
+    {
+    }
+
+    private class YesPatchNavigationCategoryRecord : YesPatchNavigationRecordBase
+    {
+        public YesPatchNavigationCategoryRecord(string text)
+        {
+            Text = text;
+        }
+
+        public string Text { get; }
+    }
+
+    private sealed class YesPatchNavigationRecord : YesPatchNavigationRecordBase
+    {
+        public YesPatchNavigationRecord(YesPatch patch)
+        {
+            Patch = patch;
+        }
+
+        public YesPatch Patch { get; }
     }
 }

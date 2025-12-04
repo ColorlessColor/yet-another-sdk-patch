@@ -15,6 +15,7 @@ internal sealed class RemoteConfigCachePatch : YesPatchBase
 {
     public override string Id => "xyz.misakal.vpm.remote-config-cache-patch";
     public override string DisplayName => "Remote Config Cache";
+    public override string Category => "Base SDK Network Enhancements";
 
     private readonly Harmony _harmonyInstance = new("xyz.misakal.vpm.remote-config-cache-patch");
 

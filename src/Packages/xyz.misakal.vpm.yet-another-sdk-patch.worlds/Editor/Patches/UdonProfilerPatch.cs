@@ -16,6 +16,7 @@ internal sealed class UdonProfilerPatch : YesPatchBase
 {
     public override string Id => "xyz.misakal.vpm.yet-another-sdk-patch.worlds.udon-profiler";
     public override string DisplayName => "Udon Profiler";
+    public override string Category => "Worlds SDK Enhancements";
 
     public override string Description =>
         "Add more detail markers to Unity Profiler for Udon behaviours execution.";

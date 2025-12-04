@@ -1,0 +1,27 @@
+{
+    "name": "YetAnotherPatchForVRChatSdk.Avatars",
+    "rootNamespace": "YetAnotherPatchForVRChatSdk.Avatars",
+    "references": [
+        "GUID:c427fdff1390e954e91e12eb67f5cf3e",
+        "GUID:6e9c6119ac4eb334284fb7b4bc6d1f05"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "YPF4VRC.0Harmony.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "com.vrchat.avatars",
+            "expression": "3.9.0",
+            "define": "YAP4VRC_VRCHAT_AVATARS_3_9_0_OR_NEWER"
+        }
+    ],
+    "noEngineReferences": false
+}

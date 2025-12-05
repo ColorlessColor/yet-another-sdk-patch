@@ -47,11 +47,12 @@ internal sealed class VrcApiHttpClientFactory
     {
         _setupCookieContainer(cookieContainer);
 
-        var handler = new HttpClientHandler
+        var innerHandler = new HttpClientHandler
         {
             CookieContainer = cookieContainer
         };
 
+        var handler = new ResilienceHttpHandler(new HttpLoggingHandler(innerHandler));
         var client = new HttpClient(handler);
         foreach (var header in _defaultRequestHeaders)
         {

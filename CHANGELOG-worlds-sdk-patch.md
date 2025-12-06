@@ -12,4 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Udon Profiler
   - Add more detail markers to Unity Profiler for Udon behaviours execution.
 
-[unreleased]: https://github.com/project-vrcz/yet-another-sdk-patch
+## [0.1.0-beta.1] - 2025-12-06
+
+### Added
+
+- Udon Profiler
+  - Add more detail markers to Unity Profiler for Udon behaviours execution.
+
+[unreleased]: https://github.com/olivierlacan/keep-a-changelog/compare/v0.1.0-beta.1...HEAD
+[0.1.0-beta.1]: https://github.com/olivierlacan/keep-a-changelog/releases/tag/v0.1.0-beta.1

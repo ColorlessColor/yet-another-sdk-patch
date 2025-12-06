@@ -3,9 +3,11 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using HarmonyLib;
+using UnityEngine.UIElements;
 using VRC.Core;
 using VRC.SDKBase.Editor.Api;
 using YesPatchFrameworkForVRChatSdk.PatchApi;
+using YetAnotherPatchForVRChatSdk.Patches.NetworkResilience.SettingsUi;
 
 namespace YetAnotherPatchForVRChatSdk.Patches.NetworkResilience;
 
@@ -16,6 +18,8 @@ internal sealed class NetworkResiliencePatch : YesPatchBase
     public override string Description => "Network Resilience Ability for VRChat SDK.";
 
     public override string Category => "Base SDK Quality of Life Improvements";
+
+    public override bool HasSettingsUi => true;
 
     private readonly Harmony _harmony = new("xyz.misakal.vpm.yet-another-sdk-patch.network-resilience");
 
@@ -109,5 +113,10 @@ internal sealed class NetworkResiliencePatch : YesPatchBase
 
         __result = CreateOrGetHttpClientFactory().GetOrCreateClient();
         return false;
+    }
+
+    public override void CreateSettingsUi(VisualElement rootVisualElement)
+    {
+        rootVisualElement.Add(new NetworkResiliencePatchSettingsUi());
     }
 }

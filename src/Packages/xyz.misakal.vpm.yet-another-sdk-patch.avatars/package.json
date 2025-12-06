@@ -1,9 +1,9 @@
 {
   "name": "xyz.misakal.vpm.yet-another-sdk-patch.avatars",
   "displayName": "Yet Another Patch for VRChat SDK - Avatars",
-  "version": "0.1.0",
+  "version": "0.1.0-beta.1",
   "hideInEditor": true,
-  "description": "Patch to fix avatar sdk won't crop thumbnail when creating new avatar after upgrade to 3.9.0 or newer.",
+  "description": "Patch to fix avatar sdk won\u0027t crop thumbnail when creating new avatar after upgrade to 3.9.0 or newer.",
   "unity": "2022.3",
   "author": {
     "name": "project-vrcz"

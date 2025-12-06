@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- Easy way to make user friendly patch by `YesPatchBase` and export it by `ExportYesPatch` assembly attribute.
+- Easy to find a location to storage your patch settings by `PatchSettingsHelper`.
+- Patch Name, Description and Category.
+- Custom Patch Settings UI.
 - Locate, Manage and Apply `YesPatchBase` Patch.
 - Patch Management Ui
   - Allow user broswer patch by category.

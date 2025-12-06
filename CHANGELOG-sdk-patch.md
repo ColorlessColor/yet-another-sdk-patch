@@ -7,4 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Network Resilience Patch
+  - Add Retry Strategy for VRChat SDK.
+  - Logging Http Request (for HttpClient used by VRChat SDK).
+  - Allow user to custom proxy settings for VRChat SDK or just use System Proxy.
+- No Telemetry Patch
+  - Disables all telemetry and analytics in the VRChat SDK.
+- Randomize Device Id Patch
+  - Randomizes the device ID sent with API requests.
+- Remote Config Cache Patch
+  - Reduce domain reload times by cache VRChat Api Config.
+- Always Agree Copyright Agreement Patch
+  - Automatically agrees to the copyright agreement when uploading content.
+
 [unreleased]: https://github.com/project-vrcz/yet-another-sdk-patch

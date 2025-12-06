@@ -7,4 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Easy way to make user friendly patch by `YesPatchBase` and export it by `ExportYesPatch` assembly attribute.
+- Easy to find a location to storage your patch settings by `PatchSettingsHelper`.
+- Patch Name, Description and Category.
+- Custom Patch Settings UI.
+
 [unreleased]: https://github.com/project-vrcz/yet-another-sdk-patch

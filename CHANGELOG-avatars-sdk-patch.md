@@ -7,4 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Fix .sb Forget to Crop Thumbnail Patch
+  - Fix the issue that VRChat SDK forgets to crop the avatar thumbnail when creating new avatar after 3.9.0.
+
 [unreleased]: https://github.com/project-vrcz/yet-another-sdk-patch
